@@ -21,5 +21,4 @@ export const getIngredient = async () => {
   
   const res = await IngredientModel.find();
   return res;
-  console.log(res);
 }

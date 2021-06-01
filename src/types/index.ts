@@ -1,0 +1,1 @@
+export { validateReqType } from './validateReqType';
