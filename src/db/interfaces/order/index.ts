@@ -51,6 +51,11 @@ export const getAllFinishedOrders = async() => {
   return OrderModel.find({active: false});
 }
 
+export const getAllOrders = async() => {
+  await getConnection();
+  return OrderModel.find();
+}
+
 export const getOrderById = async (id: string) => {
   await getConnection();
   return await OrderModel.findById(id);
