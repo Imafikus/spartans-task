@@ -8,15 +8,19 @@ interface Order {
   firstName: string,
   lastName: string,
   phoneNumber: string,
-  active: boolean
+  active: boolean,
+  size: string,
+  timestamp: number
 }
 
 const schema = new Schema<Order>({
   ingredients: {type: [String] , required: true},
+  size: {type: String, enum: ['small', 'medium', 'large'], required: true},
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
   phoneNumber: {type: String, required: true},
-  active: {type: Boolean, required: true}
+  active: {type: Boolean, required: true},
+  timestamp: {type: Number, required: true}
 })
 
 const OrderModel = model<Order>('orders', schema);
@@ -24,9 +28,12 @@ const OrderModel = model<Order>('orders', schema);
 export const saveOrder = async (order: PostOrderReqType) => {
   await getConnection();
   
+  console.log('saving: ', order);
+  
   const doc = new OrderModel({
     ...order,
-    active: true
+    active: true,
+    timestamp: Date.now()
   });
   console.log('Doc id', doc._id);
   

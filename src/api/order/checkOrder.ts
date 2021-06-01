@@ -4,6 +4,7 @@ import { InvalidReqContentResponse, InvalidReqStructureResponse, sendResponse, S
 import { validateReqType } from "../../types";
 import { getOrderById } from '../../db';
 import { Types } from 'mongoose';
+import { calculateOrderWaitTime } from './utils';
 
 
 export const checkOrder = async (req: Request, res: Response): Promise<void> => {
@@ -23,10 +24,12 @@ export const checkOrder = async (req: Request, res: Response): Promise<void> => 
     return;
   }
   
-  if(order.active) {
-    res.status(Statuses.ok).send({ msg: 'Order is still being processed' });
-    return;
-  }
+  // if(order.active) {
+  //   res.status(Statuses.ok).send({ msg: 'Order is still being processed' });
+  //   return;
+  // }
+  const waitTime = await calculateOrderWaitTime(reqBody.id);
+  console.log('Order wait time: ', waitTime);
   
   res.status(Statuses.ok).send({ msg: "Order is finished" });
 }

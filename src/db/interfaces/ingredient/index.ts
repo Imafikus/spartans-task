@@ -19,8 +19,7 @@ export const getIngredientByName = async (name: string) => {
   
   await getConnection();
   
-  const res = await IngredientModel.find({name});
-  return res;
+  return await IngredientModel.findOne({name});
 }
 
 export const getAllIngredientNames = async () => {

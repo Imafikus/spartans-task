@@ -2,6 +2,7 @@ import Joi from 'joi';
 
 export interface PostOrderReqType {
   ingredients: Array<string>,
+  size: string,
   firstName: string,
   lastName: string,
   phoneNumber: string
@@ -9,6 +10,7 @@ export interface PostOrderReqType {
 
 export const PostOrderReqSchema = Joi.object({
   ingredients: Joi.array().items(Joi.string()),
+  size: Joi.string().valid('small', 'medium', 'large').required(),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   phoneNumber: Joi.string().regex(/^[0-9]{10}$/).required()

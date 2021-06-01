@@ -1,7 +1,11 @@
 import { Request, Response } from 'express';
-// import { getIngredient } from '../../db';
+import { getAllActiveOrders } from '../../db';
 
 export const getRecentOrders = async (req: Request, res: Response): Promise<void> => {
-  // const allIngredients = await getIngredient();
-  res.status(200).send({ msg: 'whatever' });
+  
+  const activeOrders = await getAllActiveOrders();
+  
+  const orderIds = activeOrders.map(o => o._id);
+  
+  res.status(200).send({ recentOrders: orderIds});
 }
