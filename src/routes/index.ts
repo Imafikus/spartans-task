@@ -8,5 +8,7 @@ router.post('/check_order', api.checkOrder);
 router.get('/recent_orders', api.getRecentOrders);
 
 router.post('/get_top_ingredients', api.getTopIngredients);
+router.post('/get_order_history', api.getOrderHistory);
+
 
 export default router;
