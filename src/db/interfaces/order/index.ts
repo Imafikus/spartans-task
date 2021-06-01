@@ -3,7 +3,15 @@ import { PostOrderReqType } from '../../../api/order/types';
 import { getConnection } from '../../db';
 
 
-const schema = new Schema<PostOrderReqType>({
+interface Order {
+  ingredients: Array<string>,
+  firstName: string,
+  lastName: string,
+  phoneNumber: string,
+  active: boolean
+}
+
+const schema = new Schema<Order>({
   ingredients: {type: [String] , required: true},
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
@@ -11,7 +19,7 @@ const schema = new Schema<PostOrderReqType>({
   active: {type: Boolean, required: true}
 })
 
-const OrderModel = model<PostOrderReqType>('orders', schema);
+const OrderModel = model<Order>('orders', schema);
 
 export const saveOrder = async (order: PostOrderReqType) => {
   await getConnection();
@@ -33,4 +41,10 @@ export const getAllActiveOrders = async() => {
 
 export const getOrderById = async (id: string) => {
   await getConnection();
+  return await OrderModel.findById(id);
+}
+
+export const deleteOrderById = async (id: string) => {
+  await getConnection();
+  return await OrderModel.findByIdAndDelete(id);
 }

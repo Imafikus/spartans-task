@@ -21,3 +21,11 @@ export interface CancelOrderReqType {
 export const CancelOrderReqSchema = Joi.object({
   id: Joi.string().required(),
 });
+
+export interface CheckOrderReqType {
+  id: string
+}
+
+export const CheckOrderReqSchema = Joi.object({
+  id: Joi.string().required(),
+});

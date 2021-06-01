@@ -26,10 +26,9 @@ export const postOrder = async (req: Request, res: Response): Promise<void> => {
     return sendResponse(res, InvalidReqStructureResponse);
   }
   
-  const allOrders = await getAllActiveOrders();
-  console.log(allOrders);
+  const allActiveOrders = await getAllActiveOrders();
   
-  if(allOrders.length > 1) {
+  if(allActiveOrders.length > 15) {
     res.status(Statuses.notAllowed).send({msg: 'Too many active orders, try again later'});
     return;
   }
