@@ -19,7 +19,7 @@ and you should be good to go.
 
 Database can be set up locally by using provided `Dockerfile`. Commands that you need to run:
 
-> `docker build -t mongo_spartan` .
+> `docker build -t mongo_spartan .`
 
 > `docker run -dp 27017:27017 mongo_spartan`
 
