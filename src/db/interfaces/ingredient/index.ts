@@ -15,10 +15,18 @@ const schema = new Schema<Ingredient>({
 
 const IngredientModel = model<Ingredient>('ingredients', schema);
 
-export const getIngredient = async () => {
+export const getIngredientByName = async (name: string) => {
   
   await getConnection();
   
-  const res = await IngredientModel.find();
+  const res = await IngredientModel.find({name});
   return res;
+}
+
+export const getAllIngredientNames = async () => {
+  
+  await getConnection();
+  
+  const allIngredients = await IngredientModel.find();
+  return allIngredients.map( i => i.name);
 }

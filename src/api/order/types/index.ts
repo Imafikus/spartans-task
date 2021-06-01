@@ -13,3 +13,11 @@ export const PostOrderReqSchema = Joi.object({
   lastName: Joi.string().required(),
   phoneNumber: Joi.string().regex(/^[0-9]{10}$/).required()
 });
+
+export interface CancelOrderReqType {
+  id: string
+}
+
+export const CancelOrderReqSchema = Joi.object({
+  id: Joi.string().required(),
+});
