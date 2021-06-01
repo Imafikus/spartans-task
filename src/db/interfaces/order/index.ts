@@ -65,3 +65,12 @@ export const deleteOrderById = async (id: string) => {
   await getConnection();
   return await OrderModel.findByIdAndDelete(id);
 }
+
+export const markOrderAsDone = async (id: string) => {
+  await OrderModel.findByIdAndUpdate(
+    id,
+    {
+      active: false
+    }
+  );
+}

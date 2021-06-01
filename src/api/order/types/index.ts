@@ -31,3 +31,16 @@ export interface CheckOrderReqType {
 export const CheckOrderReqSchema = Joi.object({
   id: Joi.string().required(),
 });
+export interface DuplicateOrderReqType {
+  id: string
+  firstName: string,
+  lastName: string,
+  phoneNumber: string
+}
+
+export const DuplicateOrderReqSchema = Joi.object({
+  id: Joi.string().required(),
+  firstName: Joi.string().required(),
+  lastName: Joi.string().required(),
+  phoneNumber: Joi.string().regex(/^[0-9]{10}$/).required()
+});

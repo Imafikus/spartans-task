@@ -6,7 +6,6 @@ export const calculatePreparationTime = async (order: PostOrderReqType) => {
   
   for (const ingredientName of order.ingredients) {
     const ingredient = await getIngredientByName(ingredientName);
-    console.log('Current ingredient: ', ingredient);
     if(ingredient) {
       preparationTime += ingredient.time;
     }
@@ -72,12 +71,4 @@ export const findPlaceInQueueAndWaitTime = async (id: string) => {
     placeInQueue,
     waitTime
   };
-}
-
-export const calculateOrderWaitTime = async(id: string) => {
-  // const order = await getOrderById(id);
-  // if(order) {
-  //   return await calculatePreparationTime(order);
-  // }
-  console.log(await findPlaceInQueueAndWaitTime(id));
 }
