@@ -9,6 +9,7 @@ router.get('/recent_orders', api.getRecentOrders);
 
 router.post('/get_top_ingredients', api.getTopIngredients);
 router.post('/get_order_history', api.getOrderHistory);
+router.post('/get_total_amount_earned', api.getTotalAmountEarned);
 
 
 export default router;
